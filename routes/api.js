@@ -77,12 +77,12 @@ Mongoose.connect(process.env.DB, { useNewUrlParser: true }, function (err) {
         
         .post(function (req, res){
           var project = req.params.project;
-          console.log(req.body);
+          //console.log(req.body);
           /*Mongoose.connect(process.env.DB, { useNewUrlParser: true }, function (err) {
             if (err) {
               console.log(err);
             } else {*/
-              console.log("db connected");
+              //console.log("db connected");
               issueObject.create({issue_title: req.body.issue_title, 
                 issue_text: req.body.issue_text, 
                 created_by: req.body.created_by,
@@ -96,7 +96,7 @@ Mongoose.connect(process.env.DB, { useNewUrlParser: true }, function (err) {
                     console.log(err);
                     res.send(err);
                   } else {
-                    console.log(data);
+                    //console.log(data);
                     res.json({"_id": data._id, 
                       "issue_title": data.issue_title,
                       "issue_text": data.issue_text,
@@ -117,7 +117,7 @@ Mongoose.connect(process.env.DB, { useNewUrlParser: true }, function (err) {
         
         .put(function (req, res){
           var project = req.params.project;
-          console.log(req.body);
+          //console.log(req.body);
           var updater = {};
           var hasUpdate = false;
           if (req.body.issue_title != "") {
@@ -155,7 +155,7 @@ Mongoose.connect(process.env.DB, { useNewUrlParser: true }, function (err) {
                 console.log(err);
                 res.send('could not update ' + req.body._id);
               } else {
-                console.log(doc);
+                //console.log(doc);
                 res.send("successfully updated");
               }
             });

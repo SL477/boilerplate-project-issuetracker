@@ -44,7 +44,16 @@ export default function (app) {
                     '_id issue_title issue_text created_on updated_on created_by assigned_to open status_text'
                 )
                 .then((docs) => {
-                    console.log(docs);
+                    // console.log(
+                    //     docs,
+                    //     'query',
+                    //     queryObj,
+                    //     'query params',
+                    //     req.query,
+                    //     req.query.open,
+                    //     req.query.assigned_to,
+                    //     req.params
+                    // );
                     res.json(docs);
                 })
                 .catch((err) => {
@@ -117,9 +126,9 @@ export default function (app) {
                 hasUpdate = true;
             }
 
-            if (req.body.open == 'false') {
+            if (req.body.open == 'false' || !req.body.open) {
                 console.log('close issue');
-                updater['open'] == false;
+                updater['open'] = false;
                 hasUpdate = true;
             }
 
@@ -132,7 +141,18 @@ export default function (app) {
                         },
                         updater
                     )
-                    .then(() => res.send('successfully updated'))
+                    .then(() => {
+                        // console.log(
+                        //     'updated',
+                        //     data,
+                        //     'update data',
+                        //     updater,
+                        //     'id',
+                        //     req.body._id,
+                        //     req.body.open
+                        // );
+                        res.send('successfully updated');
+                    })
                     .catch((err) => {
                         console.error(err);
                         res.send('could not update ' + req.body._id);
